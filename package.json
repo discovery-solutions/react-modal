@@ -6,7 +6,8 @@
     "author": "Lucas Craveiro Paes <lucascraveiropaes@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "build": "rollup -c"
+        "build": "rollup -c",
+        "publish:prod": "npm run build && npm publish"
     },
     "repository": {
         "type": "git",
