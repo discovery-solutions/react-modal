@@ -9,7 +9,7 @@ MODE.map(fomart => {
     config.push({
         input: input,
         output: {
-            name: "@octaldev/react-js-modal",
+            name: "@octaldev/react-modal",
             file: `dist/index.${fomart}.js`,
             format: fomart,
             exports: "auto"

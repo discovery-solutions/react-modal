@@ -1,12 +1,13 @@
 import React from "react";
-import {
-    Container,
-    Overlay,
-    Card
-} from "./styles";
+import styles from "./styles/index.js";
 
-const Modal = ({ active, show, data, children, closeModal }) => {
+const Modal = ({ active, show, data, children, closeModal, style }) => {
     let content = null;
+    const {
+        Container,
+        Overlay,
+        Card
+    } = styles;
 
     if (typeof active !== "string")
         return null;
@@ -24,13 +25,17 @@ const Modal = ({ active, show, data, children, closeModal }) => {
     if (!content)
         return null;
 
+    const Component = content?.props?.component;
+
     return (
-        <Container show={ true }>
+        <Container show style={ style }>
             <Overlay onClick={ closeModal } />
 
-            <Card>
-                { React.cloneElement(content, { ...data, closeModal }) }
-            </Card>
+            {(typeof Component === "function") ? (
+                <Component closeModal={ closeModal } { ...data } />
+            ) : (
+                React.cloneElement(content, { ...data, closeModal })
+            )}
         </Container>
     )
 }

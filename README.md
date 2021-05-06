@@ -1,9 +1,9 @@
-# 8D - React JS Modal
+# 8D - React Modal
 
-A Super Light ReactJS Modal
+A Super Light Modal for ReactJS and React Native Applications
 
 ```sh
-npm i @octaldev/react-js-modal
+npm i @octaldev/react-modal
 ```
 
 ### Conteúdo
@@ -12,11 +12,12 @@ npm i @octaldev/react-js-modal
 
 ## Utilização Padrão
 
-A primeira coisa a ser feita é instanciar o provider, assim:
+A primeira coisa a ser feita é instanciar o provider, como no exemplo abaixo.
+É possível perceber que existem dois jeitos para declarar os componentes:
 
-```jsx
+```js
 import React from "react";
-import { ModalProvider, showModal } from "@octaldev/react-js-modal";
+import { ModalProvider, showModal } from "@octaldev/react-modal";
 import MyModal from "./MyModal";
 
 const App = () => {
@@ -28,7 +29,8 @@ const App = () => {
 
     return (
         <ModalProvider>
-            <MyModal name="test"/>
+            <MyModal name="test"/> {/* Jeito 1 de declarar */}
+            <Modal name="test" component={ MyModal }/> {/* Jeito 2 */}
         </ModalProvider>
     )
 }
@@ -40,7 +42,7 @@ A prop ```name``` é **obrigatória** em todos os children do provider. Através
 
 E dentro de ```MyModal```, é possível extrair a função para fechar o modal:
 
-```jsx
+```js
 import React from "react";
 
 const MyModal = ({ closeModal }) => (

@@ -1,7 +1,7 @@
 import React from "react";
-import Modal from "./Modal/index.js";
+import InternalModal from "./Modal/index.js";
 
-global.ModalContext = React.createContext();
+global.octal_dev_modal_Context = React.createContext();
 
 const modalReducer = (state, action) => {
     switch (action.type) {
@@ -23,9 +23,13 @@ export const ModalProvider = ({ children, active = null, data = {}, ...rest }) =
     global.OctalDev_updateModal = (active, data = {}) => dispatch({ type: "updateModal", active, data });
     const closeModal = () => global.OctalDev_updateModal(null);
 
-    return React.createElement(global.ModalContext.Provider, { value: { state, dispatch }},
-        React.createElement(Modal, { ...state, ...rest, closeModal }, children)
+    return React.createElement(global.octal_dev_modal_Context.Provider, { value: { state, dispatch }},
+        React.createElement(InternalModal, { ...state, ...rest, closeModal }, children)
     );
+}
+
+export const Modal = ({ name, component: Component }) => {
+    return null;
 }
 
 export const showModal = (name, data) => {

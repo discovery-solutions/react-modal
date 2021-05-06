@@ -1,23 +1,22 @@
 {
-    "name": "@octaldev/react-js-modal",
-    "version": "0.0.2",
-    "description": "A Super Light ReactJS Modal",
+    "name": "@octaldev/react-modal",
+    "version": "0.0.3",
+    "description": "A Super Light Modal for ReactJS and React Native Applications",
     "main": "dist/index.cjs.js",
     "author": "Lucas Craveiro Paes <lucascraveiropaes@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "build": "rollup -c",
+        "build": "rollup -c && cp ./src/Modal/styles/web.js ./dist/web.js && cp ./src/Modal/styles/native.js ./dist/native.js",
         "publish:prod": "npm run build && npm publish"
     },
     "repository": {
         "type": "git",
-        "url": "http://dhpp.homelinux.com:14500/8d-packages/react-js-modal"
+        "url": "http://dhpp.homelinux.com:14500/8d-packages/react-modal"
     },
     "keywords": [
         "react",
         "react-hooks",
         "modal",
-        "dhpp",
         "octal",
         "octaldev"
     ],
