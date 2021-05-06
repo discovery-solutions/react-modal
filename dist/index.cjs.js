@@ -20,16 +20,6 @@ var _extends__default = /*#__PURE__*/_interopDefaultLegacy(_extends);
 var _taggedTemplateLiteral__default = /*#__PURE__*/_interopDefaultLegacy(_taggedTemplateLiteral);
 var styled__default = /*#__PURE__*/_interopDefaultLegacy(styled);
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
-var fadeIn = styled.keyframes(_templateObject || (_templateObject = _taggedTemplateLiteral__default['default'](["\n  from {\n      opacity: 0;\n  }\n  to {\n      opacity: 1;\n  }\n"])));
-var fadeOut = styled.keyframes(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral__default['default'](["\n    from {\n        opacity: 1;\n    }\n    to {\n        opacity: 0;\n    }\n"])));
-var Container = styled__default['default'].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 99;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    animation: ", " 0.3s;\n    animation-direction: forward;\n"])), function (_ref) {
-  var show = _ref.show;
-  return show ? fadeIn : fadeOut;
-});
-var Overlay = styled__default['default'].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n    backdrop-filter: blur(3px);\n    transition: all 0.3s;\n\n    :hover {\n        cursor: pointer;\n    }\n"])));
-var Card = styled__default['default'].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral__default['default'](["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
-
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { _defineProperty__default['default'](target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -40,15 +30,13 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-var Modal$1 = function Modal(_ref) {
+var BaseModal = function BaseModal(_ref) {
   var _content, _content$props;
 
-  var active = _ref.active;
-      _ref.show;
-      var data = _ref.data,
+  var active = _ref.active,
+      data = _ref.data,
       children = _ref.children,
-      closeModal = _ref.closeModal,
-      style = _ref.style;
+      closeModal = _ref.closeModal;
   var content = null;
   if (typeof active !== "string") return null;
 
@@ -73,16 +61,36 @@ var Modal$1 = function Modal(_ref) {
 
   if (!content) return null;
   var Component = (_content = content) === null || _content === void 0 ? void 0 : (_content$props = _content.props) === null || _content$props === void 0 ? void 0 : _content$props.component;
+  if (typeof Component === "function") return /*#__PURE__*/React__default['default'].createElement(Component, _extends__default['default']({
+    closeModal: closeModal
+  }, data));
+  return /*#__PURE__*/React__default['default'].cloneElement(content, _objectSpread$1(_objectSpread$1({}, data), {}, {
+    closeModal: closeModal
+  }));
+};
+
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
+var fadeIn = styled.keyframes(_templateObject || (_templateObject = _taggedTemplateLiteral__default['default'](["\n  from {\n      opacity: 0;\n  }\n  to {\n      opacity: 1;\n  }\n"])));
+var fadeOut = styled.keyframes(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral__default['default'](["\n    from {\n        opacity: 1;\n    }\n    to {\n        opacity: 0;\n    }\n"])));
+var Container = styled__default['default'].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 99;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    animation: ", " 0.3s;\n    animation-direction: forward;\n"])), function (_ref) {
+  var show = _ref.show;
+  return show ? fadeIn : fadeOut;
+});
+var Overlay = styled__default['default'].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n    backdrop-filter: blur(3px);\n    transition: all 0.3s;\n\n    :hover {\n        cursor: pointer;\n    }\n"])));
+var Card = styled__default['default'].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral__default['default'](["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
+
+var Modal$1 = function Modal(_ref) {
+  var style = _ref.style,
+      props = _objectWithoutProperties__default['default'](_ref, ["style"]);
+
+  var Child = BaseModal(props);
+  if (!Child) return null;
   return /*#__PURE__*/React__default['default'].createElement(Container, {
     show: true,
     style: style
   }, /*#__PURE__*/React__default['default'].createElement(Overlay, {
-    onClick: closeModal
-  }), /*#__PURE__*/React__default['default'].createElement(Card, null, typeof Component === "function" ? /*#__PURE__*/React__default['default'].createElement(Component, _extends__default['default']({
-    closeModal: closeModal
-  }, data)) : /*#__PURE__*/React__default['default'].cloneElement(content, _objectSpread$1(_objectSpread$1({}, data), {}, {
-    closeModal: closeModal
-  }))));
+    onClick: props.closeModal
+  }), /*#__PURE__*/React__default['default'].createElement(Card, null, Child));
 };
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }

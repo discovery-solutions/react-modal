@@ -1,5 +1,5 @@
 import React from "react";
-import getChild from "../Child";
+import getChild from "../../src/Child";
 import {
     Container,
     Overlay,
@@ -11,6 +11,8 @@ const Modal = ({ style, ...props }) => {
 
     if (!Child)
         return null;
+
+    console.log(Child);
 
     return (
         <Container show style={ style }>
