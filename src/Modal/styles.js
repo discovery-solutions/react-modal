@@ -1,24 +1,25 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css } from "styled-components/primitives";
+import { Platform } from "react-primitives";
 
-export const fadeIn = keyframes`
-  from {
-      opacity: 0;
-  }
-  to {
-      opacity: 1;
-  }
-`;
+// export const fadeIn = keyframes`
+//   from {
+//       opacity: 0;
+//   }
+//   to {
+//       opacity: 1;
+//   }
+// `;
+//
+// export const fadeOut = keyframes`
+//     from {
+//         opacity: 1;
+//     }
+//     to {
+//         opacity: 0;
+//     }
+// `;
 
-export const fadeOut = keyframes`
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-`;
-
-export const Container = styled.div`
+export const Container = styled.View`
     position: absolute;
     top: 0;
     left: 0;
@@ -29,12 +30,9 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    animation: ${({ show }) => show ? fadeIn : fadeOut } 0.3s;
-    animation-direction: forward;
 `;
 
-export const Overlay = styled.div`
+export const Overlay = styled.View`
     position: absolute;
     top: 0;
     left: 0;
@@ -42,15 +40,19 @@ export const Overlay = styled.div`
     height: 100%;
     background: #000;
     opacity: 0.8;
-    backdrop-filter: blur(3px);
-    transition: all 0.3s;
 
-    :hover {
-        cursor: pointer;
-    }
+    ${ Platform.select({
+        web: css`
+            backdrop-filter: blur(3px);
+            transition: all 0.3s;
+            cursor: pointer;
+        `,
+        ios: {},
+        android: {}
+    }) }
 `;
 
-export const Card = styled.div`
+export const Card = styled.View`
     padding: 20px;
     background: #FFF;
     border-radius: 8px;

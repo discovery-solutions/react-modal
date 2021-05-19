@@ -8,7 +8,8 @@ var _objectWithoutProperties = require('@babel/runtime/helpers/objectWithoutProp
 var React = require('react');
 var _extends = require('@babel/runtime/helpers/extends');
 var _taggedTemplateLiteral = require('@babel/runtime/helpers/taggedTemplateLiteral');
-var styled = require('styled-components');
+var styled = require('styled-components/primitives');
+var reactPrimitives = require('react-primitives');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -69,19 +70,36 @@ var BaseModal = function BaseModal(_ref) {
   }));
 };
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
-var fadeIn = styled.keyframes(_templateObject || (_templateObject = _taggedTemplateLiteral__default['default'](["\n  from {\n      opacity: 0;\n  }\n  to {\n      opacity: 1;\n  }\n"])));
-var fadeOut = styled.keyframes(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral__default['default'](["\n    from {\n        opacity: 1;\n    }\n    to {\n        opacity: 0;\n    }\n"])));
-var Container = styled__default['default'].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 99;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    animation: ", " 0.3s;\n    animation-direction: forward;\n"])), function (_ref) {
-  var show = _ref.show;
-  return show ? fadeIn : fadeOut;
-});
-var Overlay = styled__default['default'].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n    backdrop-filter: blur(3px);\n    transition: all 0.3s;\n\n    :hover {\n        cursor: pointer;\n    }\n"])));
-var Card = styled__default['default'].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral__default['default'](["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
+var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+//   from {
+//       opacity: 0;
+//   }
+//   to {
+//       opacity: 1;
+//   }
+// `;
+//
+// export const fadeOut = keyframes`
+//     from {
+//         opacity: 1;
+//     }
+//     to {
+//         opacity: 0;
+//     }
+// `;
+
+var Container = styled__default['default'].View(_templateObject || (_templateObject = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 99;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n"])));
+var Overlay = styled__default['default'].View(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n\n    ", "\n"])), reactPrimitives.Platform.select({
+  web: styled.css(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral__default['default'](["\n            backdrop-filter: blur(3px);\n            transition: all 0.3s;\n            cursor: pointer;\n        "]))),
+  ios: {},
+  android: {}
+}));
+var Card = styled__default['default'].View(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral__default['default'](["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
 
 var Modal$1 = function Modal(_ref) {
   var style = _ref.style,
-      props = _objectWithoutProperties__default['default'](_ref, ["style"]);
+      card = _ref.card,
+      props = _objectWithoutProperties__default['default'](_ref, ["style", "card"]);
 
   var Child = BaseModal(props);
   if (!Child) return null;
@@ -89,8 +107,8 @@ var Modal$1 = function Modal(_ref) {
     show: true,
     style: style
   }, /*#__PURE__*/React__default['default'].createElement(Overlay, {
-    onClick: props.closeModal
-  }), /*#__PURE__*/React__default['default'].createElement(Card, null, Child));
+    onPress: props.closeModal
+  }), card === true ? /*#__PURE__*/React__default['default'].createElement(Card, null, Child) : Child);
 };
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }

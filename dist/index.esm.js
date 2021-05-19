@@ -4,7 +4,8 @@ import _objectWithoutProperties from '@babel/runtime/helpers/objectWithoutProper
 import React from 'react';
 import _extends from '@babel/runtime/helpers/extends';
 import _taggedTemplateLiteral from '@babel/runtime/helpers/taggedTemplateLiteral';
-import styled, { keyframes } from 'styled-components';
+import styled, { css } from 'styled-components/primitives';
+import { Platform } from 'react-primitives';
 
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -55,19 +56,36 @@ var BaseModal = function BaseModal(_ref) {
   }));
 };
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
-var fadeIn = keyframes(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  from {\n      opacity: 0;\n  }\n  to {\n      opacity: 1;\n  }\n"])));
-var fadeOut = keyframes(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    from {\n        opacity: 1;\n    }\n    to {\n        opacity: 0;\n    }\n"])));
-var Container = styled.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 99;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    animation: ", " 0.3s;\n    animation-direction: forward;\n"])), function (_ref) {
-  var show = _ref.show;
-  return show ? fadeIn : fadeOut;
-});
-var Overlay = styled.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n    backdrop-filter: blur(3px);\n    transition: all 0.3s;\n\n    :hover {\n        cursor: pointer;\n    }\n"])));
-var Card = styled.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
+var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+//   from {
+//       opacity: 0;
+//   }
+//   to {
+//       opacity: 1;
+//   }
+// `;
+//
+// export const fadeOut = keyframes`
+//     from {
+//         opacity: 1;
+//     }
+//     to {
+//         opacity: 0;
+//     }
+// `;
+
+var Container = styled.View(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 99;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n"])));
+var Overlay = styled.View(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n\n    ", "\n"])), Platform.select({
+  web: css(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n            backdrop-filter: blur(3px);\n            transition: all 0.3s;\n            cursor: pointer;\n        "]))),
+  ios: {},
+  android: {}
+}));
+var Card = styled.View(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
 
 var Modal$1 = function Modal(_ref) {
   var style = _ref.style,
-      props = _objectWithoutProperties(_ref, ["style"]);
+      card = _ref.card,
+      props = _objectWithoutProperties(_ref, ["style", "card"]);
 
   var Child = BaseModal(props);
   if (!Child) return null;
@@ -75,8 +93,8 @@ var Modal$1 = function Modal(_ref) {
     show: true,
     style: style
   }, /*#__PURE__*/React.createElement(Overlay, {
-    onClick: props.closeModal
-  }), /*#__PURE__*/React.createElement(Card, null, Child));
+    onPress: props.closeModal
+  }), card === true ? /*#__PURE__*/React.createElement(Card, null, Child) : Child);
 };
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }

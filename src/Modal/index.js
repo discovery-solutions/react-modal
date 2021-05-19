@@ -4,9 +4,9 @@ import {
     Container,
     Overlay,
     Card
-} from "./styles";
+} from "./styles.js";
 
-const Modal = ({ style, ...props }) => {
+const Modal = ({ style, card, ...props }) => {
     const Child = getChild(props);
 
     if (!Child)
@@ -14,9 +14,13 @@ const Modal = ({ style, ...props }) => {
 
     return (
         <Container show style={ style }>
-            <Overlay onClick={ props.closeModal } />
+            <Overlay onPress={ props.closeModal }/>
 
-            <Card>{ Child }</Card>
+            {(card === true) ? (
+                <Card>{ Child }</Card>
+            ) : (
+                Child
+            )}
         </Container>
     )
 }

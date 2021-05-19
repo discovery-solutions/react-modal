@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@babel/runtime/helpers/defineProperty'), require('@babel/runtime/helpers/slicedToArray'), require('@babel/runtime/helpers/objectWithoutProperties'), require('react'), require('@babel/runtime/helpers/extends'), require('@babel/runtime/helpers/taggedTemplateLiteral'), require('styled-components')) :
-    typeof define === 'function' && define.amd ? define(['exports', '@babel/runtime/helpers/defineProperty', '@babel/runtime/helpers/slicedToArray', '@babel/runtime/helpers/objectWithoutProperties', 'react', '@babel/runtime/helpers/extends', '@babel/runtime/helpers/taggedTemplateLiteral', 'styled-components'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['@octaldev/react-modal'] = {}, global._defineProperty, global._slicedToArray, global._objectWithoutProperties, global.React, global._extends, global._taggedTemplateLiteral, global.styled));
-}(this, (function (exports, _defineProperty, _slicedToArray, _objectWithoutProperties, React, _extends, _taggedTemplateLiteral, styled) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@babel/runtime/helpers/defineProperty'), require('@babel/runtime/helpers/slicedToArray'), require('@babel/runtime/helpers/objectWithoutProperties'), require('react'), require('@babel/runtime/helpers/extends'), require('@babel/runtime/helpers/taggedTemplateLiteral'), require('styled-components/primitives'), require('react-primitives')) :
+    typeof define === 'function' && define.amd ? define(['exports', '@babel/runtime/helpers/defineProperty', '@babel/runtime/helpers/slicedToArray', '@babel/runtime/helpers/objectWithoutProperties', 'react', '@babel/runtime/helpers/extends', '@babel/runtime/helpers/taggedTemplateLiteral', 'styled-components/primitives', 'react-primitives'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['@octaldev/react-modal'] = {}, global._defineProperty, global._slicedToArray, global._objectWithoutProperties, global.React, global._extends, global._taggedTemplateLiteral, global.styled, global.reactPrimitives));
+}(this, (function (exports, _defineProperty, _slicedToArray, _objectWithoutProperties, React, _extends, _taggedTemplateLiteral, styled, reactPrimitives) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -63,19 +63,36 @@
       }));
     };
 
-    var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
-    var fadeIn = styled.keyframes(_templateObject || (_templateObject = _taggedTemplateLiteral__default['default'](["\n  from {\n      opacity: 0;\n  }\n  to {\n      opacity: 1;\n  }\n"])));
-    var fadeOut = styled.keyframes(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral__default['default'](["\n    from {\n        opacity: 1;\n    }\n    to {\n        opacity: 0;\n    }\n"])));
-    var Container = styled__default['default'].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 99;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    animation: ", " 0.3s;\n    animation-direction: forward;\n"])), function (_ref) {
-      var show = _ref.show;
-      return show ? fadeIn : fadeOut;
-    });
-    var Overlay = styled__default['default'].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n    backdrop-filter: blur(3px);\n    transition: all 0.3s;\n\n    :hover {\n        cursor: pointer;\n    }\n"])));
-    var Card = styled__default['default'].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral__default['default'](["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
+    var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+    //   from {
+    //       opacity: 0;
+    //   }
+    //   to {
+    //       opacity: 1;
+    //   }
+    // `;
+    //
+    // export const fadeOut = keyframes`
+    //     from {
+    //         opacity: 1;
+    //     }
+    //     to {
+    //         opacity: 0;
+    //     }
+    // `;
+
+    var Container = styled__default['default'].View(_templateObject || (_templateObject = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 99;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n"])));
+    var Overlay = styled__default['default'].View(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n\n    ", "\n"])), reactPrimitives.Platform.select({
+      web: styled.css(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral__default['default'](["\n            backdrop-filter: blur(3px);\n            transition: all 0.3s;\n            cursor: pointer;\n        "]))),
+      ios: {},
+      android: {}
+    }));
+    var Card = styled__default['default'].View(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral__default['default'](["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
 
     var Modal$1 = function Modal(_ref) {
       var style = _ref.style,
-          props = _objectWithoutProperties__default['default'](_ref, ["style"]);
+          card = _ref.card,
+          props = _objectWithoutProperties__default['default'](_ref, ["style", "card"]);
 
       var Child = BaseModal(props);
       if (!Child) return null;
@@ -83,8 +100,8 @@
         show: true,
         style: style
       }, /*#__PURE__*/React__default['default'].createElement(Overlay, {
-        onClick: props.closeModal
-      }), /*#__PURE__*/React__default['default'].createElement(Card, null, Child));
+        onPress: props.closeModal
+      }), card === true ? /*#__PURE__*/React__default['default'].createElement(Card, null, Child) : Child);
     };
 
     function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
