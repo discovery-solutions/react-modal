@@ -1,6 +1,6 @@
 import React from "react";
 
-const BaseModal = ({ active, data, children, closeModal }) => {
+const BaseModal = ({ active, props, children, closeModal }) => {
     let content = null;
 
     if (typeof active !== "string")
@@ -22,9 +22,9 @@ const BaseModal = ({ active, data, children, closeModal }) => {
     const Component = content?.props?.component;
 
     if (typeof Component === "function")
-        return <Component closeModal={ closeModal } { ...data } />
+        return <Component closeModal={ closeModal } { ...props } />
 
-    return React.cloneElement(content, { ...data, closeModal });
+    return React.cloneElement(content, { ...props, closeModal });
 }
 
 export default BaseModal;

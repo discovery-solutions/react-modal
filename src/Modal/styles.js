@@ -11,6 +11,7 @@ export const Container = styled.View`
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
 `;
 
 export const Overlay = styled.View`
@@ -19,8 +20,7 @@ export const Overlay = styled.View`
     left: 0;
     width: 100%;
     height: 100%;
-    background: #000;
-    opacity: 0.8;
+    background-color: rgba(0, 0, 0, 0.6);
 `;
 
 export const Card = styled.View`
