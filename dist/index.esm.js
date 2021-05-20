@@ -4,8 +4,7 @@ import _objectWithoutProperties from '@babel/runtime/helpers/objectWithoutProper
 import React from 'react';
 import _extends from '@babel/runtime/helpers/extends';
 import _taggedTemplateLiteral from '@babel/runtime/helpers/taggedTemplateLiteral';
-import styled, { css } from 'styled-components/primitives';
-import { Platform } from 'react-primitives';
+import styled from 'styled-components/primitives';
 
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -56,31 +55,10 @@ var BaseModal = function BaseModal(_ref) {
   }));
 };
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
-//   from {
-//       opacity: 0;
-//   }
-//   to {
-//       opacity: 1;
-//   }
-// `;
-//
-// export const fadeOut = keyframes`
-//     from {
-//         opacity: 1;
-//     }
-//     to {
-//         opacity: 0;
-//     }
-// `;
-
+var _templateObject, _templateObject2, _templateObject3;
 var Container = styled.View(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 99;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n"])));
-var Overlay = styled.View(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n\n    ", "\n"])), Platform.select({
-  web: css(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n            backdrop-filter: blur(3px);\n            transition: all 0.3s;\n            cursor: pointer;\n        "]))),
-  ios: {},
-  android: {}
-}));
-var Card = styled.View(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
+var Overlay = styled.View(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n"])));
+var Card = styled.View(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
 
 var Modal$1 = function Modal(_ref) {
   var style = _ref.style,
@@ -90,7 +68,6 @@ var Modal$1 = function Modal(_ref) {
   var Child = BaseModal(props);
   if (!Child) return null;
   return /*#__PURE__*/React.createElement(Container, {
-    show: true,
     style: style
   }, /*#__PURE__*/React.createElement(Overlay, {
     onPress: props.closeModal
@@ -135,7 +112,7 @@ var ModalProvider = function ModalProvider(_ref) {
       state = _React$useReducer2[0],
       dispatch = _React$useReducer2[1];
 
-  global.OctalDev_updateModal = function (active) {
+  global.octal_dev_modal_updateModal = function (active) {
     var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return dispatch({
       type: "updateModal",
@@ -145,7 +122,7 @@ var ModalProvider = function ModalProvider(_ref) {
   };
 
   var closeModal = function closeModal() {
-    return global.OctalDev_updateModal(null);
+    return global.octal_dev_modal_updateModal(null);
   };
 
   return /*#__PURE__*/React.createElement(global.octal_dev_modal_Context.Provider, {
@@ -163,7 +140,7 @@ var Modal = function Modal(_ref2) {
   return null;
 };
 var showModal = function showModal(name, data) {
-  return global.OctalDev_updateModal(name, data);
+  return global.octal_dev_modal_updateModal(name, data);
 };
 
 export { Modal, ModalProvider, showModal };

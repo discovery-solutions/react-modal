@@ -1,23 +1,4 @@
-import styled, { css } from "styled-components/primitives";
-import { Platform } from "react-primitives";
-
-// export const fadeIn = keyframes`
-//   from {
-//       opacity: 0;
-//   }
-//   to {
-//       opacity: 1;
-//   }
-// `;
-//
-// export const fadeOut = keyframes`
-//     from {
-//         opacity: 1;
-//     }
-//     to {
-//         opacity: 0;
-//     }
-// `;
+import styled from "styled-components/primitives";
 
 export const Container = styled.View`
     position: absolute;
@@ -40,16 +21,6 @@ export const Overlay = styled.View`
     height: 100%;
     background: #000;
     opacity: 0.8;
-
-    ${ Platform.select({
-        web: css`
-            backdrop-filter: blur(3px);
-            transition: all 0.3s;
-            cursor: pointer;
-        `,
-        ios: {},
-        android: {}
-    }) }
 `;
 
 export const Card = styled.View`

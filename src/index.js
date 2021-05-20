@@ -20,8 +20,8 @@ const modalReducer = (state, action) => {
 export const ModalProvider = ({ children, active = null, data = {}, ...rest }) => {
     const [ state, dispatch ] = React.useReducer(modalReducer, { active, data });
 
-    global.OctalDev_updateModal = (active, data = {}) => dispatch({ type: "updateModal", active, data });
-    const closeModal = () => global.OctalDev_updateModal(null);
+    global.octal_dev_modal_updateModal = (active, data = {}) => dispatch({ type: "updateModal", active, data });
+    const closeModal = () => global.octal_dev_modal_updateModal(null);
 
     return React.createElement(global.octal_dev_modal_Context.Provider, { value: { state, dispatch }},
         React.createElement(InternalModal, { ...state, ...rest, closeModal }, children)
@@ -33,5 +33,5 @@ export const Modal = ({ name, component: Component }) => {
 }
 
 export const showModal = (name, data) => {
-    return global.OctalDev_updateModal(name, data);
+    return global.octal_dev_modal_updateModal(name, data);
 }

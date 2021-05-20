@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@babel/runtime/helpers/defineProperty'), require('@babel/runtime/helpers/slicedToArray'), require('@babel/runtime/helpers/objectWithoutProperties'), require('react'), require('@babel/runtime/helpers/extends'), require('@babel/runtime/helpers/taggedTemplateLiteral'), require('styled-components/primitives'), require('react-primitives')) :
-    typeof define === 'function' && define.amd ? define(['exports', '@babel/runtime/helpers/defineProperty', '@babel/runtime/helpers/slicedToArray', '@babel/runtime/helpers/objectWithoutProperties', 'react', '@babel/runtime/helpers/extends', '@babel/runtime/helpers/taggedTemplateLiteral', 'styled-components/primitives', 'react-primitives'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['@octaldev/react-modal'] = {}, global._defineProperty, global._slicedToArray, global._objectWithoutProperties, global.React, global._extends, global._taggedTemplateLiteral, global.styled, global.reactPrimitives));
-}(this, (function (exports, _defineProperty, _slicedToArray, _objectWithoutProperties, React, _extends, _taggedTemplateLiteral, styled, reactPrimitives) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@babel/runtime/helpers/defineProperty'), require('@babel/runtime/helpers/slicedToArray'), require('@babel/runtime/helpers/objectWithoutProperties'), require('react'), require('@babel/runtime/helpers/extends'), require('@babel/runtime/helpers/taggedTemplateLiteral'), require('styled-components/primitives')) :
+    typeof define === 'function' && define.amd ? define(['exports', '@babel/runtime/helpers/defineProperty', '@babel/runtime/helpers/slicedToArray', '@babel/runtime/helpers/objectWithoutProperties', 'react', '@babel/runtime/helpers/extends', '@babel/runtime/helpers/taggedTemplateLiteral', 'styled-components/primitives'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['@octaldev/react-modal'] = {}, global._defineProperty, global._slicedToArray, global._objectWithoutProperties, global.React, global._extends, global._taggedTemplateLiteral, global.styled));
+}(this, (function (exports, _defineProperty, _slicedToArray, _objectWithoutProperties, React, _extends, _taggedTemplateLiteral, styled) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -63,31 +63,10 @@
       }));
     };
 
-    var _templateObject, _templateObject2, _templateObject3, _templateObject4;
-    //   from {
-    //       opacity: 0;
-    //   }
-    //   to {
-    //       opacity: 1;
-    //   }
-    // `;
-    //
-    // export const fadeOut = keyframes`
-    //     from {
-    //         opacity: 1;
-    //     }
-    //     to {
-    //         opacity: 0;
-    //     }
-    // `;
-
+    var _templateObject, _templateObject2, _templateObject3;
     var Container = styled__default['default'].View(_templateObject || (_templateObject = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 99;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n"])));
-    var Overlay = styled__default['default'].View(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n\n    ", "\n"])), reactPrimitives.Platform.select({
-      web: styled.css(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral__default['default'](["\n            backdrop-filter: blur(3px);\n            transition: all 0.3s;\n            cursor: pointer;\n        "]))),
-      ios: {},
-      android: {}
-    }));
-    var Card = styled__default['default'].View(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral__default['default'](["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
+    var Overlay = styled__default['default'].View(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral__default['default'](["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: #000;\n    opacity: 0.8;\n"])));
+    var Card = styled__default['default'].View(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral__default['default'](["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
 
     var Modal$1 = function Modal(_ref) {
       var style = _ref.style,
@@ -97,7 +76,6 @@
       var Child = BaseModal(props);
       if (!Child) return null;
       return /*#__PURE__*/React__default['default'].createElement(Container, {
-        show: true,
         style: style
       }, /*#__PURE__*/React__default['default'].createElement(Overlay, {
         onPress: props.closeModal
@@ -142,7 +120,7 @@
           state = _React$useReducer2[0],
           dispatch = _React$useReducer2[1];
 
-      global.OctalDev_updateModal = function (active) {
+      global.octal_dev_modal_updateModal = function (active) {
         var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
         return dispatch({
           type: "updateModal",
@@ -152,7 +130,7 @@
       };
 
       var closeModal = function closeModal() {
-        return global.OctalDev_updateModal(null);
+        return global.octal_dev_modal_updateModal(null);
       };
 
       return /*#__PURE__*/React__default['default'].createElement(global.octal_dev_modal_Context.Provider, {
@@ -170,7 +148,7 @@
       return null;
     };
     var showModal = function showModal(name, data) {
-      return global.OctalDev_updateModal(name, data);
+      return global.octal_dev_modal_updateModal(name, data);
     };
 
     exports.Modal = Modal;

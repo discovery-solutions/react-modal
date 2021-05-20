@@ -13,7 +13,7 @@ const Modal = ({ style, card, ...props }) => {
         return null;
 
     return (
-        <Container show style={ style }>
+        <Container style={ style }>
             <Overlay onPress={ props.closeModal }/>
 
             {(card === true) ? (
