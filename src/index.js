@@ -3,6 +3,10 @@ import InternalModal from "./Modal/index.js";
 
 global.octal_dev_modal_Context = React.createContext();
 
+export const closeModal = () => {
+    return global.octal_dev_modal_updateModal(null);
+}
+
 const modalReducer = (state, action) => {
     switch (action.type) {
         case "updateModal": {
@@ -20,8 +24,8 @@ const modalReducer = (state, action) => {
 export const ModalProvider = ({ children, active = null, props = {}, onChange, ...rest }) => {
     const [ state, dispatch ] = React.useReducer(modalReducer, { active, props });
 
+    global.octal_dev_modal_getState = () => state;
     global.octal_dev_modal_updateModal = (active, props = {}) => dispatch({ type: "updateModal", active, props });
-    const closeModal = () => global.octal_dev_modal_updateModal(null);
 
     useEffect(() => {
         if (typeof onChange === "function")
@@ -39,4 +43,30 @@ export const Modal = ({ name, component: Component }) => {
 
 export const showModal = (name, props) => {
     return global.octal_dev_modal_updateModal(name, props);
+}
+
+export const getRouter = () => {
+    let context = {
+        state: global.octal_dev_modal_getState(),
+    }
+
+    try {
+        return [ context.state, global.octal_dev_modal_updateModal ];
+    } catch (e) {
+        return [ undefined, undefined ];
+    }
+}
+
+export const useModalState = callback => {
+    const context = React.useContext(global.octal_dev_modal_Context);
+
+    if (context === undefined)
+        throw new Error("useModalState must be used within a ModalProvider");
+
+    try {
+        return context.state;
+    } catch (e) {
+        console.log(e);
+        return undefined;
+    }
 }

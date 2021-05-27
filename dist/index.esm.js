@@ -79,6 +79,9 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 global.octal_dev_modal_Context = /*#__PURE__*/React.createContext();
+var closeModal = function closeModal() {
+  return global.octal_dev_modal_updateModal(null);
+};
 
 var modalReducer = function modalReducer(state, action) {
   switch (action.type) {
@@ -114,6 +117,10 @@ var ModalProvider = function ModalProvider(_ref) {
       state = _React$useReducer2[0],
       dispatch = _React$useReducer2[1];
 
+  global.octal_dev_modal_getState = function () {
+    return state;
+  };
+
   global.octal_dev_modal_updateModal = function (active) {
     var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return dispatch({
@@ -121,10 +128,6 @@ var ModalProvider = function ModalProvider(_ref) {
       active: active,
       props: props
     });
-  };
-
-  var closeModal = function closeModal() {
-    return global.octal_dev_modal_updateModal(null);
   };
 
   useEffect(function () {
@@ -150,5 +153,27 @@ var Modal = function Modal(_ref2) {
 var showModal = function showModal(name, props) {
   return global.octal_dev_modal_updateModal(name, props);
 };
+var getRouter = function getRouter() {
+  var context = {
+    state: global.octal_dev_modal_getState()
+  };
 
-export { Modal, ModalProvider, showModal };
+  try {
+    return [context.state, global.octal_dev_modal_updateModal];
+  } catch (e) {
+    return [undefined, undefined];
+  }
+};
+var useModalState = function useModalState(callback) {
+  var context = React.useContext(global.octal_dev_modal_Context);
+  if (context === undefined) throw new Error("useModalState must be used within a ModalProvider");
+
+  try {
+    return context.state;
+  } catch (e) {
+    console.log(e);
+    return undefined;
+  }
+};
+
+export { Modal, ModalProvider, closeModal, getRouter, showModal, useModalState };
