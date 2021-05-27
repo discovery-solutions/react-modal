@@ -2,6 +2,7 @@ import React from "react";
 import getChild from "../Child";
 import {
     Container,
+    Touchable,
     Overlay,
     Card
 } from "./styles.js";
@@ -14,7 +15,9 @@ const Modal = ({ style, card, ...props }) => {
 
     return (
         <Container style={ style }>
-            <Overlay onPress={ props.closeModal }/>
+            <Touchable onPress={ props.closeModal }>
+                <Overlay/>
+            </Touchable>
 
             {(card === true) ? (
                 <Card>{ Child }</Card>

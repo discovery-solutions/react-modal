@@ -55,10 +55,11 @@ var BaseModal = function BaseModal(_ref) {
   }));
 };
 
-var _templateObject, _templateObject2, _templateObject3;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4;
 var Container = styled.View(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    z-index: 99;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    background-color: transparent;\n"])));
-var Overlay = styled.View(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.6);\n"])));
-var Card = styled.View(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
+var Touchable = styled.Touchable(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral([""])));
+var Overlay = styled.View(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.6);\n"])));
+var Card = styled.View(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    padding: 20px;\n    background: #FFF;\n    border-radius: 8px;\n    z-index: 1;\n"])));
 
 var Modal$1 = function Modal(_ref) {
   var style = _ref.style,
@@ -69,9 +70,9 @@ var Modal$1 = function Modal(_ref) {
   if (!Child) return null;
   return /*#__PURE__*/React.createElement(Container, {
     style: style
-  }, /*#__PURE__*/React.createElement(Overlay, {
+  }, /*#__PURE__*/React.createElement(Touchable, {
     onPress: props.closeModal
-  }), card === true ? /*#__PURE__*/React.createElement(Card, null, Child) : Child);
+  }, /*#__PURE__*/React.createElement(Overlay, null)), card === true ? /*#__PURE__*/React.createElement(Card, null, Child) : Child);
 };
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }

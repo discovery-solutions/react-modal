@@ -14,6 +14,8 @@ export const Container = styled.View`
     background-color: transparent;
 `;
 
+export const Touchable = styled.Touchable``;
+
 export const Overlay = styled.View`
     position: absolute;
     top: 0;
