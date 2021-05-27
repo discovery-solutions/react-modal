@@ -45,7 +45,7 @@ export const showModal = (name, props) => {
     return global.octal_dev_modal_updateModal(name, props);
 }
 
-export const getRouter = () => {
+export const getModalState = () => {
     let context = {
         state: global.octal_dev_modal_getState(),
     }

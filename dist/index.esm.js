@@ -153,7 +153,7 @@ var Modal = function Modal(_ref2) {
 var showModal = function showModal(name, props) {
   return global.octal_dev_modal_updateModal(name, props);
 };
-var getRouter = function getRouter() {
+var getModalState = function getModalState() {
   var context = {
     state: global.octal_dev_modal_getState()
   };
@@ -176,4 +176,4 @@ var useModalState = function useModalState(callback) {
   }
 };
 
-export { Modal, ModalProvider, closeModal, getRouter, showModal, useModalState };
+export { Modal, ModalProvider, closeModal, getModalState, showModal, useModalState };
