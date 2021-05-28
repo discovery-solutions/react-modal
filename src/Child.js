@@ -19,12 +19,14 @@ const BaseModal = ({ active, props, children, closeModal }) => {
     if (!content)
         return null;
 
-    const Component = content?.props?.component;
+
+    const { component: Component, ...rest } = content?.props;
+    let componentProps = { ...rest, closeModal };
 
     if (typeof Component === "function")
-        return <Component closeModal={ closeModal } { ...props } />
+        return <Component { ...componentProps } />
 
-    return React.cloneElement(content, { ...props, closeModal });
+    return React.cloneElement(content, componentProps);
 }
 
 export default BaseModal;
