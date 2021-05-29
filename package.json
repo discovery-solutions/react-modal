@@ -1,6 +1,6 @@
 {
     "name": "@octaldev/react-modal",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "A Super Light Modal for ReactJS and React Native Applications",
     "main": "dist/index.cjs.js",
     "author": "Lucas Craveiro Paes <lucascraveiropaes@gmail.com>",

@@ -7,16 +7,16 @@ import {
     Card
 } from "./styles.js";
 
-const Modal = ({ style, card, ...rest }) => {
-    const Child = getChild(rest);
+const Modal = ({ style, props: originalProps, ...rest }) => {
+    const props = {
+        ...rest,
+        ...originalProps,
+    }
+
+    const Child = getChild(props);
 
     if (!Child)
         return null;
-
-    const props = {
-        ...rest,
-        ...Child.props,
-    }
 
     return (
         <Container style={ style }>
@@ -24,7 +24,7 @@ const Modal = ({ style, card, ...rest }) => {
                 <Overlay/>
             </Touchable>
 
-            {(props.card === true) ? (
+            {(Child.props.card === true) ? (
                 <Card>{ Child }</Card>
             ) : (
                 Child

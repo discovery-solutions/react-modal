@@ -1,6 +1,6 @@
 import React from "react";
 
-const BaseModal = ({ active, props, children, closeModal }) => {
+const BaseModal = ({ active, children, closeModal, ...props }) => {
     let content = null;
 
     if (typeof active !== "string")
@@ -21,7 +21,7 @@ const BaseModal = ({ active, props, children, closeModal }) => {
 
 
     const { component: Component, ...rest } = content?.props;
-    let componentProps = { ...rest, closeModal };
+    let componentProps = { ...rest, closeModal, ...props };
 
     if (typeof Component === "function")
         return <Component { ...componentProps } />

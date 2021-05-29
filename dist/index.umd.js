@@ -26,10 +26,11 @@
     var BaseModal = function BaseModal(_ref) {
       var _content;
 
-      var active = _ref.active;
-          _ref.props;
-          var children = _ref.children,
-          closeModal = _ref.closeModal;
+      var active = _ref.active,
+          children = _ref.children,
+          closeModal = _ref.closeModal,
+          props = _objectWithoutProperties__default['default'](_ref, ["active", "children", "closeModal"]);
+
       var content = null;
       if (typeof active !== "string") return null;
 
@@ -60,7 +61,7 @@
 
       var componentProps = _objectSpread$2(_objectSpread$2({}, rest), {}, {
         closeModal: closeModal
-      });
+      }, props);
 
       if (typeof Component === "function") return /*#__PURE__*/React__default['default'].createElement(Component, componentProps);
       return /*#__PURE__*/React__default['default'].cloneElement(content, componentProps);
@@ -77,20 +78,19 @@
     function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { _defineProperty__default['default'](target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
     var Modal$1 = function Modal(_ref) {
-      var style = _ref.style;
-          _ref.card;
-          var rest = _objectWithoutProperties__default['default'](_ref, ["style", "card"]);
+      var style = _ref.style,
+          originalProps = _ref.props,
+          rest = _objectWithoutProperties__default['default'](_ref, ["style", "props"]);
 
-      var Child = BaseModal(rest);
+      var props = _objectSpread$1(_objectSpread$1({}, rest), originalProps);
+
+      var Child = BaseModal(props);
       if (!Child) return null;
-
-      var props = _objectSpread$1(_objectSpread$1({}, rest), Child.props);
-
       return /*#__PURE__*/React__default['default'].createElement(Container, {
         style: style
       }, /*#__PURE__*/React__default['default'].createElement(Touchable, {
         onPress: props.closeModal
-      }, /*#__PURE__*/React__default['default'].createElement(Overlay, null)), props.card === true ? /*#__PURE__*/React__default['default'].createElement(Card, null, Child) : Child);
+      }, /*#__PURE__*/React__default['default'].createElement(Overlay, null)), Child.props.card === true ? /*#__PURE__*/React__default['default'].createElement(Card, null, Child) : Child);
     };
 
     function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
