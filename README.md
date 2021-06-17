@@ -1,9 +1,9 @@
-# 8D - React Modal
+# Discovery Solutions - React Modal
 
 A Super Light Modal for ReactJS and React Native Applications
 
 ```sh
-npm i @octaldev/react-modal
+npm i @discovery/react-modal
 ```
 
 ### Conteúdo
@@ -17,7 +17,7 @@ A primeira coisa a ser feita é instanciar o provider, como no exemplo abaixo.
 
 ```js
 import React from "react";
-import { ModalProvider, showModal } from "@octaldev/react-modal";
+import { ModalProvider, showModal } from "@discovery/react-modal";
 import MyModal from "./MyModal";
 
 const App = () => {
