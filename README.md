@@ -3,7 +3,7 @@
 A Super Light Modal for ReactJS and React Native Applications
 
 ```sh
-npm i @discovery/react-modal
+npm i @discovery-solutions/react-modal
 ```
 
 ### Conteúdo
@@ -17,7 +17,7 @@ A primeira coisa a ser feita é instanciar o provider, como no exemplo abaixo.
 
 ```js
 import React from "react";
-import { ModalProvider, showModal } from "@discovery/react-modal";
+import { ModalProvider, showModal } from "@discovery-solutions/react-modal";
 import MyModal from "./MyModal";
 
 const App = () => {
