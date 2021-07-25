@@ -88,9 +88,9 @@ var Modal$1 = function Modal(_ref) {
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-global.octal_dev_modal_Context = /*#__PURE__*/React.createContext();
+global.discovery_solutions_modal_Context = /*#__PURE__*/React.createContext();
 var closeModal = function closeModal() {
-  return global.octal_dev_modal_updateModal(null);
+  return global.discovery_solutions_modal_updateModal(null);
 };
 
 var modalReducer = function modalReducer(state, action) {
@@ -127,11 +127,11 @@ var ModalProvider = function ModalProvider(_ref) {
       state = _React$useReducer2[0],
       dispatch = _React$useReducer2[1];
 
-  global.octal_dev_modal_getState = function () {
+  global.discovery_solutions_modal_getState = function () {
     return state;
   };
 
-  global.octal_dev_modal_updateModal = function (active) {
+  global.discovery_solutions_modal_updateModal = function (active) {
     var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return dispatch({
       type: "updateModal",
@@ -146,7 +146,7 @@ var ModalProvider = function ModalProvider(_ref) {
       props: state.props
     });
   }, [state, onChange]);
-  return /*#__PURE__*/React.createElement(global.octal_dev_modal_Context.Provider, {
+  return /*#__PURE__*/React.createElement(global.discovery_solutions_modal_Context.Provider, {
     value: {
       state: state,
       dispatch: dispatch
@@ -161,21 +161,21 @@ var Modal = function Modal(_ref2) {
   return null;
 };
 var showModal = function showModal(name, props) {
-  return global.octal_dev_modal_updateModal(name, props);
+  return global.discovery_solutions_modal_updateModal(name, props);
 };
 var getModalState = function getModalState() {
   var context = {
-    state: global.octal_dev_modal_getState()
+    state: global.discovery_solutions_modal_getState()
   };
 
   try {
-    return [context.state, global.octal_dev_modal_updateModal];
+    return [context.state, global.discovery_solutions_modal_updateModal];
   } catch (e) {
     return [undefined, undefined];
   }
 };
 var useModalState = function useModalState(callback) {
-  var context = React.useContext(global.octal_dev_modal_Context);
+  var context = React.useContext(global.discovery_solutions_modal_Context);
   if (context === undefined) throw new Error("useModalState must be used within a ModalProvider");
 
   try {
